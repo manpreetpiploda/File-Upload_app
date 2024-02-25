@@ -1,10 +1,19 @@
 import React from "react";
+import Template from "../components/Template";
+import logoImage from "../assets/Upload.png"
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
     return(
-        <div>
-            <h1>Login me kaya kar raha hai be</h1>
-        </div>
+    
+        <Template 
+            title={"Welcome Back"} 
+            desc1={"Upload Your Files from Right Know"} 
+            desc2={"Your Files are safe on this pateform"} 
+            formtype={"login"} 
+            image={logoImage}
+            setIsLoggedIn={setIsLoggedIn}
+        />
+
     );
 }
 
