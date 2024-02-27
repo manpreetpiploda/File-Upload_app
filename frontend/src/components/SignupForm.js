@@ -17,8 +17,12 @@ const SignupForm = () =>{
     const [showPassword, setShowPassword] = useState(false);
 
     function changeHandler(event){
-
+        console.log(event);
+        console.log(event.target);
+        console.log(event.target.value);
+      
         setFormData( (prevData) => (
+              
             {
                 ...prevData,
                 [event.target.name]:event.target.value,
@@ -47,7 +51,7 @@ const SignupForm = () =>{
                     <input
                         required
                         type="text"
-                        name="firstname"
+                        name="firstName"
                         value={formData.firstName}
                         onChange={changeHandler}
                         placeholder="Enter First Name"
@@ -59,7 +63,7 @@ const SignupForm = () =>{
                     <input
                         required
                         type="text"
-                        name="lastname"
+                        name="lastName"
                         value={formData.lastName}
                         onChange={changeHandler}
                         placeholder="Enter Last Name"

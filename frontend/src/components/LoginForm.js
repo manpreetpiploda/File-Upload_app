@@ -65,7 +65,7 @@ const LoginForm = ({setIsLoggedIn}) => {
             </label>
 
             <button >
-                Sign In
+                <Link to="/">Sign In</Link>
             </button>
             
         </form>
