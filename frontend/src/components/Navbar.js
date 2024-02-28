@@ -19,13 +19,13 @@ const Navbar = (props) => {
             </div>
             <nav>
                 <ul className="flex gap-4">
-                    <li>
+                    <li className="font-semibold text-2xl">
                         <Link to="/">Home</Link>
                     </li>
-                    <li>
+                    <li className="font-semibold text-2xl">
                         <Link to="about">About</Link>
                     </li>
-                    <li>
+                    <li className="font-semibold text-2xl">
                         <Link to="contact">Contact</Link>
                     </li>
                 </ul>
@@ -36,21 +36,21 @@ const Navbar = (props) => {
 
                 { !isLoggedIn &&
                     <Link to="/login">
-                        <button>
+                        <button className="font-semibold text-2xl">
                             Login
                         </button>
                     </Link>
                 }
                 {!isLoggedIn &&
                     <Link to="/signup">
-                        <button>
+                        <button className="font-semibold text-2xl"  >
                             Sign Up
                         </button>
                     </Link>
                 }
                 {isLoggedIn &&
                     <Link to="/">
-                        <button onClick={ () => {
+                        <button className="font-semibold text-2xl" onClick={ () => {
                             setIsLoggedIn(false);
                             toast.success("Logout successfully")
                         }}>
@@ -60,7 +60,7 @@ const Navbar = (props) => {
                 }
                 {isLoggedIn &&
                     <Link to="/dashboard">
-                        <button>
+                        <button className="font-semibold text-2xl">
                             Dashboard
                         </button>
                     </Link>

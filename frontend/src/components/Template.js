@@ -4,30 +4,34 @@ import LoginForm from "./LoginForm";
 
 const Template = ({title, desc1, desc2, formtype, image, setIsLoggedIn}) => {
     return(
-        <div>
+        <div className="flex w-full h-full items-center justify-center">
 
-            <div>
-                <h1>{title}</h1>
+            <div className="w-[75%] flex mt-16">
 
-                <p>
-                    <span>{desc1}</span>
-                    <span>{desc2}</span>
-                </p>
+                <div className="w-[50%]">
+                    <h1 className="font-semibold text-2xl">{title}</h1>
 
-                {formtype ==="signup" ? 
-                (<SignupForm setIsLoggedIn={setIsLoggedIn}/>) : 
-                (<LoginForm setIsLoggedIn={setIsLoggedIn}/>)}
+                    <p className="flex flex-col font-semibold text-1xl mt-[10px]">
+                        <span>{desc1}</span>
+                        <span>{desc2}</span>
+                    </p>
 
-                <div>
-                    <div></div>
-                    <p>or</p>
-                    <div></div>
+                    {formtype ==="signup" ? 
+                    (<SignupForm setIsLoggedIn={setIsLoggedIn}/>) : 
+                    (<LoginForm setIsLoggedIn={setIsLoggedIn}/>)}
+
+                    <div className="flex justify-evenly mt-[20px]">
+                        <div className="border-dark-100 border-solid border-[0.5px] w-[100%]"></div>
+                        <p>or</p>
+                        <div className="border-dark-100 border-solid border-[0.5px] w-[100%]"></div>
+                    </div>
+
+                    <button className="bg-pink-200 font-semibold text-1xl w-[80%] rounded-md p-1 mt-[30px]">
+                        <p>Sign Up with Google</p>
+                    </button>
+
                 </div>
-
-                <button>
-                    <p>Sign Up with Google</p>
-                </button>
-
+                
                 <div>
                     <img src={image}
                     alt="imageee"

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { IoEyeSharp,IoEyeOff  } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
-const SignupForm = () =>{
+const SignupForm = ({setIsLoggedIn}) =>{
     // return(
     //     <div> SignupForm</div>
     // );
@@ -15,11 +17,17 @@ const SignupForm = () =>{
     })
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loggedInValue, setLoggedInValue] =useState("student");
+
+    function toggleHandler(){
+        setLoggedInValue(loggedInValue === "student" ? "instructor" : "student")
+    }
 
     function changeHandler(event){
-        console.log(event);
-        console.log(event.target);
-        console.log(event.target.value);
+        // console.log(event);
+        // console.log(event.target);
+        // console.log(event.target.value);
       
         setFormData( (prevData) => (
               
@@ -29,26 +37,33 @@ const SignupForm = () =>{
             }
         ))
     }
+    function signinButtonHandler(){
+        setIsLoggedIn(true);
+        toast.success("Sign Up Successfully")
+        
+    }
     return(
-        <div>
+        <div className="mt-5 ">
 
-            <div>
-                <button>
+            <div className="flex items-center justify-center gap-4 w-[250px] bg-pink-300 font-medium text-2xl rounded-3xl">
+                <button className={` ${loggedInValue==='student' ? ("bg-pink-700 p-1 pl-2 pr-2 rounded-3xl") : ("")} `} 
+                    onClick={toggleHandler}>
                     Student
                 </button>
 
-                <button>
+                <button className={` ${loggedInValue==='instructor' ? ("bg-pink-700 p-1 pl-2 pr-2 rounded-3xl") : ("")} `}
+                    onClick={toggleHandler}> 
                     Instructor
                 </button>
             </div>
 
-            <form>
+            <form className="w-full">
 
                 {/* Firstname and last name */}
-                <div>
+                <div className="flex mt-4 justify-between">
                     <label>
                         <p> First Name<sup>*</sup> </p>
-                    <input
+                    <input className="w-[250px] bg-pink-200 p-1 rounded-md"
                         required
                         type="text"
                         name="firstName"
@@ -60,7 +75,7 @@ const SignupForm = () =>{
 
                     <label>
                         <p> Last Name<sup>*</sup> </p>
-                    <input
+                    <input className="w-[250px] bg-pink-200 p-1 rounded-md"
                         required
                         type="text"
                         name="lastName"
@@ -72,11 +87,11 @@ const SignupForm = () =>{
                 </div>
                 
                 {/* emaild address */}
-                <label>
-                    <p>
+                <label >
+                    <p className="mt-4"> 
                         Email Address <sup>*</sup>
                     </p>
-                    <input
+                    <input className="w-[250px] bg-pink-200 p-1 rounded-md"
                         required
                         type="email"
                         value={formData.email}
@@ -87,12 +102,12 @@ const SignupForm = () =>{
                 </label>
 
                 {/* passwored section */}
-                <div>
+                <div  className="flex mt-4 justify-between" >
                 <label>
                     <p>
                         Create Password <sup>*</sup>
                     </p>
-                    <input
+                    <input className="w-[250px] bg-pink-200 p-1 rounded-md"
                         required
                         type={showPassword ? ("text") : ("password")}
                         value={formData.password}
@@ -110,25 +125,30 @@ const SignupForm = () =>{
                     <p>
                         Confirm Password <sup>*</sup>
                     </p>
-                    <input
+                    <input className="w-[250px] bg-pink-200 p-1 rounded-md"
                         required
-                        type={showPassword ? ("text") : ("password")}
+                        type={showConfirmPassword ? ("text") : ("password")}
                         value={formData.confirmPassword}
                         onChange={changeHandler}
                         placeholder="Enter Confirm Password"
                         name="confirmPassword"
                     />
 
-                    <span onClick={ () => setShowPassword( (prev) => !prev)}>
-                        {showPassword ? (<IoEyeSharp/>) : (<IoEyeOff/>)}
+                    <span onClick={ () => setShowConfirmPassword( (prev) => !prev)}>
+                        {showConfirmPassword ? (<IoEyeSharp/>) : (<IoEyeOff/>)}
                     </span>
 
                 </label>
                 </div>
-
-                <button>
-                    Create Account
-                </button>
+                
+                
+                    <Link to="/" > 
+                        <button className="bg-yellow-400 font-semibold text-1xl w-[80%] rounded-md p-1 mt-[30px]"
+                            onClick={signinButtonHandler}>
+                            Create Account
+                        </button>
+                    </Link>
+                
             </form>
         </div>
     );
